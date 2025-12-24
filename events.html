@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Pure Word Apostolic Church</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-mode">
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+    </button>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-church"></i>
+                <span>Pure Word Apostolic Church</span>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="faith.html"><i class="fas fa-cross"></i> Statement of Faith</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                <li><a href="sermons.html"><i class="fas fa-video"></i> Sermons</a></li>
+                <li><a href="events.html" class="active"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                <li><a href="giving.html"><i class="fas fa-hand-holding-heart"></i> Giving</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="admin.html" class="admin-link"><i class="fas fa-cog"></i> Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Church Events</h1>
+            <p>Stay connected with our upcoming activities and gatherings</p>
+        </div>
+    </section>
+
+    <!-- Events Content -->
+    <section class="section">
+        <div class="container">
+            <!-- Event Filters -->
+            <div class="event-filters">
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="upcoming">Upcoming Events</button>
+                    <button class="filter-tab" data-filter="past">Past Events</button>
+                    <button class="filter-tab" data-filter="all">All Events</button>
+                </div>
+                <div class="event-search">
+                    <input type="text" id="eventSearch" placeholder="Search events...">
+                    <button id="eventSearchBtn"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+
+            <!-- Featured Event -->
+            <div class="featured-event" id="featuredEvent">
+                <!-- Featured event loaded via JavaScript -->
+            </div>
+
+            <!-- Events Grid -->
+            <div class="events-grid" id="eventsGrid">
+                <!-- Events loaded via JavaScript -->
+            </div>
+
+            <!-- Events Calendar -->
+            <div class="calendar-section">
+                <h2><i class="fas fa-calendar"></i> Monthly Calendar</h2>
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <button id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                        <h3 id="currentMonth">May 2024</h3>
+                        <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="calendar" id="calendar">
+                        <!-- Calendar generated via JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notification Signup -->
+            <div class="notification-section">
+                <div class="notification-card">
+                    <div class="notification-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="notification-content">
+                        <h3>Get Event Notifications</h3>
+                        <p>Never miss an event! Get reminders for upcoming activities.</p>
+                        <div class="notification-form">
+                            <input type="email" id="notificationEmail" placeholder="Enter your email">
+                            <button id="subscribeBtn" class="btn-primary">Subscribe</button>
+                        </div>
+                        <p class="notification-note"><small>We'll send you email reminders for major events</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <!-- Same footer as index.html -->
+    </footer>
+
+    <!-- Event Modal -->
+    <div class="event-modal" id="eventModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="event-modal-content" id="eventModalContent">
+                <!-- Event details loaded via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Pure Word Apostolic Church</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Additional admin-specific styles */
+        .admin-login {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .login-card {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .login-card h2 {
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+        
+        .admin-dashboard {
+            padding: 2rem;
+        }
+        
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-box {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        
+        .stat-box h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .admin-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .admin-tab {
+            padding: 0.8rem 1.5rem;
+            background: var(--card-bg);
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .admin-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .admin-content {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .event-form, .media-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .events-list, .media-list {
+            margin-top: 2rem;
+        }
+        
+        .event-item, .media-item {
+            background: var(--bg-color);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: var(--radius);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .event-actions, .media-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .action-btn {
+            padding: 0.3rem 0.8rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .edit-btn {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .delete-btn {
+            background: #f44336;
+            color: white;
+        }
+        
+        .preview-btn {
+            background: #2196F3;
+            color: white;
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+    </button>
+
+    <!-- Admin Login (shown when not logged in) -->
+    <div id="adminLogin" class="admin-login">
+        <div class="login-card">
+            <h2><i class="fas fa-lock"></i> Admin Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <input type="text" id="adminUsername" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="adminPassword" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+                <p class="error-message" id="loginError"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard (shown when logged in) -->
+    <div id="adminDashboard" style="display: none;">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <i class="fas fa-church"></i>
+                    <span>Admin Panel</span>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Back to Site</a></li>
+                    <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="admin-dashboard">
+            <div class="container">
+                <h1>Church Admin Dashboard</h1>
+                
+                <!-- Statistics -->
+                <div class="admin-stats">
+                    <div class="stat-box">
+                        <h3 id="totalEvents">0</h3>
+                        <p>Total Events</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3 id="totalMedia">0</h3>
+                        <p>Media Items</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3 id="totalDonations">0</h3>
+                        <p>Total Donations</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3 id="activeUsers">0</h3>
+                        <p>Active Users</p>
+                    </div>
+                </div>
+
+                <!-- Admin Tabs -->
+                <div class="admin-tabs">
+                    <button class="admin-tab active" data-tab="events">Manage Events</button>
+                    <button class="admin-tab" data-tab="media">Manage Media</button>
+                    <button class="admin-tab" data-tab="donations">View Donations</button>
+                    <button class="admin-tab" data-tab="settings">Settings</button>
+                </div>
+
+                <!-- Tab Contents -->
+                <div class="admin-content">
+                    <!-- Events Tab -->
+                    <div class="tab-content active" id="eventsTab">
+                        <h2><i class="fas fa-calendar-plus"></i> Add New Event</h2>
+                        <form id="eventForm" class="event-form">
+                            <div class="form-group">
+                                <label>Event Title *</label>
+                                <input type="text" id="eventTitle" required>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Event Date *</label>
+                                    <input type="date" id="eventDate" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Event Time *</label>
+                                    <input type="time" id="eventTime" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Event Type</label>
+                                    <select id="eventType">
+                                        <option value="service">Church Service</option>
+                                        <option value="meeting">Meeting</option>
+                                        <option value="outreach">Outreach</option>
+                                        <option value="social">Social Event</option>
+                                        <option value="conference">Conference</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Location</label>
+                                    <input type="text" id="eventLocation" placeholder="Church Sanctuary">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Event Description *</label>
+                                <textarea id="eventDescription" rows="4" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Featured Image URL</label>
+                                <input type="url" id="eventImage" placeholder="https://example.com/image.jpg">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="eventFeatured" checked>
+                                    <span>Feature this event on homepage</span>
+                                </label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="sendNotification">
+                                    <span>Send notification to subscribers</span>
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-calendar-check"></i> Add Event
+                            </button>
+                        </form>
+                        
+                        <!-- Events List -->
+                        <div class="events-list">
+                            <h3>Existing Events</h3>
+                            <div id="eventsList">
+                                <!-- Events will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Media Tab -->
+                    <div class="tab-content" id="mediaTab">
+                        <h2><i class="fas fa-video"></i> Add New Media</h2>
+                        <form id="mediaForm" class="media-form">
+                            <div class="form-group">
+                                <label>Media Title *</label>
+                                <input type="text" id="mediaTitle" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Media Type</label>
+                                <select id="mediaType">
+                                    <option value="youtube">YouTube Video</option>
+                                    <option value="sermon">Sermon Audio</option>
+                                    <option value="documentary">Documentary</option>
+                                    <option value="teaching">Teaching Series</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>YouTube/Video URL *</label>
+                                <input type="url" id="mediaUrl" required placeholder="https://youtube.com/watch?v=...">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea id="mediaDescription" rows="3"></textarea>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Speaker</label>
+                                    <input type="text" id="mediaSpeaker">
+                                </div>
+                                <div class="form-group">
+                                    <label>Date</label>
+                                    <input type="date" id="mediaDate">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Thumbnail URL</label>
+                                <input type="url" id="mediaThumbnail" placeholder="https://example.com/thumbnail.jpg">
+                            </div>
+                            
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-upload"></i> Add Media
+                            </button>
+                        </form>
+                        
+                        <!-- Media List -->
+                        <div class="media-list">
+                            <h3>Existing Media</h3>
+                            <div id="mediaList">
+                                <!-- Media will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Donations Tab -->
+                    <div class="tab-content" id="donationsTab">
+                        <h2><i class="fas fa-donate"></i> Donation Records</h2>
+                        
+                        <div class="donation-filters">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Filter by Date</label>
+                                    <input type="date" id="donationDateFilter">
+                                </div>
+                                <div class="form-group">
+                                    <label>Filter by Type</label>
+                                    <select id="donationTypeFilter">
+                                        <option value="all">All Types</option>
+                                        <option value="tithe">Tithe</option>
+                                        <option value="offering">Offering</option>
+                                        <option value="missions">Missions</option>
+                                        <option value="building">Building Fund</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="donations-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Donor</th>
+                                        <th>Type</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="donationsTable">
+                                    <!-- Donations will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="donation-summary">
+                            <h3>Summary</h3>
+                            <div class="summary-grid">
+                                <div class="summary-item">
+                                    <span>Total Donations:</span>
+                                    <strong id="totalDonationsSum">Ksh0.00</strong>
+                                </div>
+                                <div class="summary-item">
+                                    <span>This Month:</span>
+                                    <strong id="monthlyDonations">Ksh0.00</strong>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Average Donation:</span>
+                                    <strong id="averageDonation">Ksh0.00</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Tab -->
+                    <div class="tab-content" id="settingsTab">
+                        <h2><i class="fas fa-cog"></i> Settings</h2>
+                        
+                        <div class="settings-grid">
+                            <div class="settings-card">
+                                <h3><i class="fas fa-bell"></i> Notifications</h3>
+                                <div class="setting-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="emailNotifications" checked>
+                                        <span>Email notifications for new events</span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="donationAlerts" checked>
+                                        <span>Alerts for large donations</span>
+                                    </label>
+                                </div>
+                                <button class="btn-small">Save Settings</button>
+                            </div>
+                            
+                            <div class="settings-card">
+                                <h3><i class="fas fa-user-shield"></i> Security</h3>
+                                <div class="form-group">
+                                    <label>Change Password</label>
+                                    <input type="password" id="newPassword" placeholder="New Password">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" id="confirmPassword" placeholder="Confirm Password">
+                                </div>
+                                <button class="btn-small">Update Password</button>
+                            </div>
+                            
+                            <div class="settings-card">
+                                <h3><i class="fas fa-database"></i> Data Management</h3>
+                                <p>Backup and restore church data</p>
+                                <button class="btn-small" id="backupBtn">
+                                    <i class="fas fa-download"></i> Backup Data
+                                </button>
+                                <button class="btn-small" id="restoreBtn">
+                                    <i class="fas fa-upload"></i> Restore Data
+                                </button>
+                            </div>
+                            
+                            <div class="settings-card">
+                                <h3><i class="fas fa-paint-brush"></i> Appearance</h3>
+                                <div class="form-group">
+                                    <label>Church Name</label>
+                                    <input type="text" id="churchName" value="Pure Word Apostolic Church">
+                                </div>
+                                <div class="form-group">
+                                    <label>Church Logo URL</label>
+                                    <input type="url" id="churchLogo" placeholder="https://example.com/logo.png">
+                                </div>
+                                <button class="btn-small">Update Appearance</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sermons - Pure Word Apostolic Church</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-mode">
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+    </button>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-church"></i>
+                <span>Pure Word Apostolic Church</span>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="faith.html"><i class="fas fa-cross"></i> Statement of Faith</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                <li><a href="sermons.html" class="active"><i class="fas fa-video"></i> Sermons</a></li>
+                <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                <li><a href="giving.html"><i class="fas fa-hand-holding-heart"></i> Giving</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="admin.html" class="admin-link"><i class="fas fa-cog"></i> Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Sermons & Teachings</h1>
+            <p>Watch and listen to messages that inspire and transform</p>
+        </div>
+    </section>
+
+    <!-- Sermons Content -->
+    <section class="section">
+        <div class="container">
+            <!-- Sermon Filters -->
+            <div class="sermon-filters">
+                <div class="filter-group">
+                    <label for="categoryFilter"><i class="fas fa-filter"></i> Filter by:</label>
+                    <select id="categoryFilter" class="filter-select">
+                        <option value="all">All Messages</option>
+                        <option value="sunday">Sunday Sermons</option>
+                        <option value="bible-study">Bible Studies</option>
+                        <option value="special">Special Messages</option>
+                        <option value="series">Series</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="speakerFilter"><i class="fas fa-user"></i> Speaker:</label>
+                    <select id="speakerFilter" class="filter-select">
+                        <option value="all">All Speakers</option>
+                        <option value="samson">Apostle Samson</option>
+                        <option value="sammy">Reverend Sammy</option>
+                        <option value="guest">Guest Speakers</option>
+                    </select>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="sermonSearch" placeholder="Search sermons...">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+
+            <!-- Sermons Grid -->
+            <div class="sermons-container" id="sermonsContainer">
+                <!-- Sermons loaded via JavaScript -->
+            </div>
+
+            <!-- Social Media Feeds -->
+            <div class="social-feeds">
+                <div class="feed-tabs">
+                    <button class="feed-tab active" data-feed="youtube">
+                        <i class="fab fa-youtube"></i> YouTube
+                    </button>
+                    <button class="feed-tab" data-feed="instagram">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </button>
+                </div>
+                
+                <div class="feed-content active" id="youtubeFeed">
+                    <h3><i class="fab fa-youtube"></i> Latest on YouTube</h3>
+                    <div class="video-grid">
+                        <!-- YouTube videos loaded via JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="feed-content" id="instagramFeed">
+                    <h3><i class="fab fa-instagram"></i> Latest on Instagram</h3>
+                    <div class="instagram-grid">
+                        <!-- Instagram posts loaded via JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Stream Section -->
+            <div class="live-stream-section">
+                <h2><i class="fas fa-broadcast-tower"></i> Join Us Live</h2>
+                <div class="live-stream-info">
+                    <div class="live-stream-card">
+                        <div class="live-indicator">
+                            <span class="live-dot"></span>
+                            <span>LIVE</span>
+                        </div>
+                        <h3>Sunday Service Live Stream</h3>
+                        <p>Sundays at 9:00 AM & 11:00 AM (EST)</p>
+                        <a href="#" class="btn-primary" id="watchLiveBtn">
+                            <i class="fas fa-play-circle"></i> Watch Live
+                        </a>
+                    </div>
+                    <div class="upcoming-streams">
+                        <h4>Upcoming Live Events:</h4>
+                        <ul id="upcomingStreams">
+                            <!-- Loaded via JavaScript -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <!-- Same footer as index.html -->
+    </footer>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="video-container">
+                <iframe id="videoPlayer" width="100%" height="500" 
+                        src="" frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

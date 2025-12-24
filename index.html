@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pure Word Apostolic Church(PWA) - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-mode">
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-church"></i>
+                <span>Pure Word Apostolic Church</span>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="faith.html"><i class="fas fa-cross"></i> Statement of Faith</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                <li><a href="sermons.html"><i class="fas fa-video"></i> Sermons</a></li>
+                <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                <li><a href="giving.html"><i class="fas fa-hand-holding-heart"></i> Giving</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="admin.html" class="admin-link"><i class="fas fa-cog"></i> Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h1>Welcome to Pure Word Apostolic Church</h1>
+                <p class="tagline">Growing in Faith, Serving in Love, Sharing Christ's Hope</p>
+                <div class="hero-buttons">
+                    <a href="#welcome" class="btn-primary">Learn More</a>
+                    <a href="events.html" class="btn-secondary">Upcoming Events</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Welcome Section -->
+    <section id="welcome" class="section">
+        <div class="container">
+            <h2 class="section-title">Welcome to Our Church Family</h2>
+            <div class="welcome-grid">
+                <div class="welcome-card">
+                    <div class="welcome-icon">
+                        <i class="fas fa-hands-praying"></i>
+                    </div>
+                    <h3>Worship With Us</h3>
+                    <p>Join us for inspiring worship services every Sunday at 9:00 AM & 11:00 AM</p>
+                </div>
+                <div class="welcome-card">
+                    <div class="welcome-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Community</h3>
+                    <p>Be part of a loving community that supports and cares for one another</p>
+                </div>
+                <div class="welcome-card">
+                    <div class="welcome-icon">
+                        <i class="fas fa-book-bible"></i>
+                    </div>
+                    <h3>Bible Teaching</h3>
+                    <p>Engaging, relevant Bible teaching for all ages and stages of life</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events Preview -->
+    <section class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Upcoming Events</h2>
+            <div class="events-preview" id="eventsPreview">
+                <!-- Events loaded via JavaScript -->
+            </div>
+            <div class="text-center">
+                <a href="events.html" class="btn-primary">View All Events</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Sermons -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Latest Sermons</h2>
+            <div class="sermons-grid">
+                <div class="sermon-card">
+                    <div class="sermon-thumbnail">
+                        <img src="images/image1.png" alt="Sermon">
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="sermon-info">
+                        <h3>The Power of Grace</h3>
+                        <p class="sermon-meta">Reverend Samuel Kirochi • Dec 12, 2025</p>
+                        <a href="sermons.html" class="btn-small">Watch Now</a>
+                    </div>
+                </div>
+                <div class="sermon-card">
+                    <div class="sermon-thumbnail">
+                        <img src="images/image1.png" alt="Sermon">
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="sermon-info">
+                        <h3>Finding Hope in Difficult Times</h3>
+                        <p class="sermon-meta">Reverend Samuel Kirochi • Dec 20, 2025</p>
+                        <a href="sermons.html" class="btn-small">Watch Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Times -->
+    <section class="section bg-dark">
+        <div class="container">
+            <h2 class="section-title text-light">Service Times</h2>
+            <div class="service-times">
+                <div class="service-card">
+                    <h3><i class="fas fa-sun"></i> Sunday Services</h3>
+                    <p>Morning Worship: 9:00 AM & 11:00 AM</p>
+                    <p>Sunday School: 10:00 AM</p>
+                </div>
+                <div class="service-card">
+                    <h3><i class="fas fa-moon"></i> Wednesday Service</h3>
+                    <p>Bible Study & Prayer: 7:00 PM</p>
+                    <p>Youth Group: 7:00 PM</p>
+                </div>
+                <div class="service-card">
+                    <h3><i class="fas fa-users"></i> Small Groups</h3>
+                    <p>Various times throughout the week</p>
+                    <p>Contact us to join a group</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3><i class="fas fa-church"></i> Pure Word Apostolic Church</h3>
+                <p>Ogembo 40200-200 Kisii ,Kisii-Kilgoris Highway</p>
+                <p><i class="fas fa-phone"></i> +254-710-777-333</p>
+                <p><i class="fas fa-envelope"></i> info@purewordapostolic.org</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="sermons.html">Sermons</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="giving.html">Online Giving</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+                <p class="newsletter-text">Subscribe to our newsletter</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Your email">
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Pure Word Apostolic Church. All rights reserved.</p>
+            <p>Built with <i class="fas fa-heart"></i> for the glory of God</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

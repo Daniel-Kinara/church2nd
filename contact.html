@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Pure Word Apostolic Church</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-mode">
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+    </button>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-church"></i>
+                <span>Pure Word Apostolic Church</span>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="faith.html"><i class="fas fa-cross"></i> Statement of Faith</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                <li><a href="sermons.html"><i class="fas fa-video"></i> Sermons</a></li>
+                <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                <li><a href="giving.html"><i class="fas fa-hand-holding-heart"></i> Giving</a></li>
+                <li><a href="contact.html" class="active"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="admin.html" class="admin-link"><i class="fas fa-cog"></i> Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>We'd love to hear from you</p>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="section">
+        <div class="container">
+            <div class="contact-container">
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Our Location</h3>
+                            <p>40200 - 20 Kisii</p>
+                            <p>Ogembo, Kisii-Kilgoris Highway</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Office Hours</h3>
+                            <p>Monday - Thursday: 9:00 AM - 5:00 PM</p>
+                            <p>Friday: 9:00 AM - 1:00 PM</p>
+                            <p>Saturday: 8:00 AM - 2:00 PM</p>
+                            <p>Sunday: 8:00 AM - 2:00 PM</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Contact Numbers</h3>
+                            <p>Main Office: +254 710-777-333</p>
+                            <p>Pastor's Office: +254 710-777-333</p>
+                            <p>Emergency: +254 710-777-333</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Email Addresses</h3>
+                            <p>General: info@ACK.org</p>
+                            <p>Pastoral: pastors@ACK.org</p>
+                            <p>Prayer: prayer@ACK.org</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Map -->
+                    <div class="map-container">
+                        <div class="map-placeholder">
+                            <i class="fas fa-map"></i>
+                            <h4>Church Location Map</h4>
+                            <p>Ogembo, Kisii-Kilgoris Highway</p>
+                            <button class="btn-small" id="openMapBtn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <h2><i class="fas fa-comment-dots"></i> Send Us a Message</h2>
+                    
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="contactName"><i class="fas fa-user"></i> Full Name *</label>
+                            <input type="text" id="contactName" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contactEmail"><i class="fas fa-envelope"></i> Email *</label>
+                                <input type="email" id="contactEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactPhone"><i class="fas fa-phone"></i> Phone</label>
+                                <input type="tel" id="contactPhone">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactSubject"><i class="fas fa-tag"></i> Subject *</label>
+                            <select id="contactSubject" required>
+                                <option value="">Select a topic</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="prayer">Prayer Request</option>
+                                <option value="counseling">Counseling</option>
+                                <option value="membership">Membership</option>
+                                <option value="volunteer">Volunteer</option>
+                                <option value="facility">Facility Rental</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactMessage"><i class="fas fa-edit"></i> Message *</label>
+                            <textarea id="contactMessage" rows="6" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="newsletterOptIn" checked>
+                                <span>Subscribe to our newsletter</span>
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="prayerTeam" checked>
+                                <span>Share my prayer request with the prayer team</span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary btn-large">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                        
+                        <p class="form-note">
+                            * Required fields. We typically respond within 24-48 hours.
+                        </p>
+                    </form>
+                    
+                    <!-- Department Contacts -->
+                    <div class="departments-section">
+                        <h3><i class="fas fa-users"></i> Contact Specific Departments</h3>
+                        <div class="department-grid">
+                            <div class="department-card">
+                                <h4><i class="fas fa-hands-praying"></i> Prayer Ministry</h4>
+                                <p>prayer@purewordapostolic.org</p>
+                                <p>+254 710-777-333</p>
+                            </div>
+                            <div class="department-card">
+                                <h4><i class="fas fa-music"></i> Worship Ministry</h4>
+                                <p>worship@purewordapostolic.org</p>
+                                <p>+254 710-777-333</p>
+                            </div>
+                            <div class="department-card">
+                                <h4><i class="fas fa-child"></i> Children's Ministry</h4>
+                                <p>children@purewordapostolic.org</p>
+                                <p>+254 710-777-333</p>
+                            </div>
+                            <div class="department-card">
+                                <h4><i class="fas fa-users"></i> Youth Ministry</h4>
+                                <p>youth@purewordapostolic.org</p>
+                                <p>+254 710-777-333</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <!-- Same footer as index.html -->
+    </footer>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="contactSuccessModal">
+        <div class="modal-content">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Message Sent Successfully!</h2>
+            <p>Thank you for reaching out. We'll get back to you soon.</p>
+            <button class="btn-primary" id="closeContactModal">Close</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

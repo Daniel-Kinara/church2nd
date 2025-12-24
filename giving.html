@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Giving - Pure Word Apostolic Church</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-mode">
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+    </button>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-church"></i>
+                <span>APure Word Apostolic Church</span>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="faith.html"><i class="fas fa-cross"></i> Statement of Faith</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                <li><a href="sermons.html"><i class="fas fa-video"></i> Sermons</a></li>
+                <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                <li><a href="giving.html" class="active"><i class="fas fa-hand-holding-heart"></i> Giving</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="admin.html" class="admin-link"><i class="fas fa-cog"></i> Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Online Giving</h1>
+            <p>Partner with us in advancing God's kingdom</p>
+        </div>
+    </section>
+
+    <!-- Giving Content -->
+    <section class="section">
+        <div class="container">
+            <!-- Giving Options -->
+            <div class="giving-options">
+                <div class="option-card">
+                    <div class="option-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3>Tithe</h3>
+                    <p>Regular giving (10% of income)</p>
+                    <button class="btn-primary give-btn" data-type="tithe">Give Now</button>
+                </div>
+                <div class="option-card">
+                    <div class="option-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>Offering</h3>
+                    <p>Special gifts above the tithe</p>
+                    <button class="btn-primary give-btn" data-type="offering">Give Now</button>
+                </div>
+                <div class="option-card">
+                    <div class="option-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3>Missions</h3>
+                    <p>Support our mission work</p>
+                    <button class="btn-primary give-btn" data-type="missions">Give Now</button>
+                </div>
+                <div class="option-card">
+                    <div class="option-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Building Fund</h3>
+                    <p>Help with facility maintenance</p>
+                    <button class="btn-primary give-btn" data-type="building">Give Now</button>
+                </div>
+            </div>
+
+            <!-- Giving Form -->
+            <div class="giving-form-container">
+                <h2><i class="fas fa-donate"></i> Make a Donation</h2>
+                <form id="givingForm" class="giving-form">
+                    <div class="form-group">
+                        <label for="amount"><i class="fas fa-dollar-sign"></i> Amount</label>
+                        <div class="amount-options">
+                            <button type="button" class="amount-btn" data-amount="50">Ksh50</button>
+                            <button type="button" class="amount-btn" data-amount="100">Ksh100</button>
+                            <button type="button" class="amount-btn" data-amount="200">Ksh200</button>
+                            <button type="button" class="amount-btn" data-amount="500">Ksh500</button>
+                            <button type="button" class="amount-btn" data-amount="1000">Ksh1000</button>
+                            <input type="number" id="customAmount" placeholder="Other amount" min="1000" step="1000">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="givingType"><i class="fas fa-tag"></i> Giving Type</label>
+                            <select id="givingType" required>
+                                <option value="tithe">Tithe</option>
+                                <option value="offering">Offering</option>
+                                <option value="missions">Missions</option>
+                                <option value="building">Building Fund</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="frequency"><i class="fas fa-redo"></i> Frequency</label>
+                            <select id="frequency">
+                                <option value="once">One-time</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="monthly">Monthly</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="donorName"><i class="fas fa-user"></i> Full Name</label>
+                        <input type="text" id="donorName" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="donorEmail"><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" id="donorEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="donorPhone"><i class="fas fa-phone"></i> Phone</label>
+                            <input type="tel" id="donorPhone">
+                        </div>
+                    </div>
+
+                    <!-- Payment Method -->
+                    <div class="payment-methods">
+                        <h3><i class="fas fa-credit-card"></i> Payment Method</h3>
+                        <div class="method-options">
+                            <label class="method-option">
+                                <input type="radio" name="paymentMethod" value="card" checked>
+                                <i class="fab fa-cc-visa"></i> Credit/Debit Card
+                            </label>
+                            <label class="method-option">
+                                <input type="radio" name="paymentMethod" value="bank">
+                                <i class="fas fa-university"></i> Bank Transfer
+                            </label>
+                            <label class="method-option">
+                                <input type="radio" name="paymentMethod" value="paypal">
+                                <i class="fab fa-paypal"></i> PayPal
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Card Details (shown when card selected) -->
+                    <div id="cardDetails" class="card-details">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="cardNumber">Card Number</label>
+                                <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expiryDate">Expiry Date</label>
+                                <input type="text" id="expiryDate" placeholder="MM/YY">
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" placeholder="123">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="anonymous" checked>
+                            <span>Give anonymously</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="receipt" checked>
+                            <span>Email me a receipt</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-primary btn-large">
+                        <i class="fas fa-lock"></i> Complete Donation
+                    </button>
+
+                    <p class="security-note">
+                        <i class="fas fa-shield-alt"></i> Your information is secure and encrypted
+                    </p>
+                </form>
+            </div>
+
+            <!-- Giving Statistics -->
+            <div class="giving-stats">
+                <h2><i class="fas fa-chart-line"></i> Giving Impact</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">Ksh50,000</div>
+                        <div class="stat-label">Given This Month</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">324</div>
+                        <div class="stat-label">Generous Givers</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">85%</div>
+                        <div class="stat-label>                        <div class="stat-label">Recurring Donors</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">Missions Supported</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Giving Verses -->
+            <div class="giving-verses">
+                <h3><i class="fas fa-book-bible"></i> Biblical Principles of Giving</h3>
+                <div class="verse-slider">
+                    <div class="verse-slide active">
+                        <p>"Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver."</p>
+                        <span class="verse-ref">2 Corinthians 9:7</span>
+                    </div>
+                    <div class="verse-slide">
+                        <p>"Bring the whole tithe into the storehouse, that there may be food in my house. Test me in this," says the Lord Almighty, "and see if I will not throw open the floodgates of heaven and pour out so much blessing that there will not be room enough to store it."</p>
+                        <span class="verse-ref">Malachi 3:10</span>
+                    </div>
+                    <div class="verse-slide">
+                        <p>"Honor the Lord with your wealth, with the firstfruits of all your crops."</p>
+                        <span class="verse-ref">Proverbs 3:9</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <!-- Same footer as index.html -->
+    </footer>
+
+    <!-- Donation Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="modal-content">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Thank You for Your Generosity!</h2>
+            <p>Your donation has been received successfully.</p>
+            <p>A receipt has been sent to your email.</p>
+            <button class="btn-primary" id="closeSuccessModal">Done</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
