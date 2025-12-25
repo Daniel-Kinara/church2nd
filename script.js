@@ -14,7 +14,7 @@ const sampleEvents = [
     {
         id: 1,
         title: "Sunday Worship Service",
-        date: "2024-06-02",
+        date: "2025-06-02",
         time: "09:00",
         type: "service",
         location: "Church Sanctuary",
@@ -481,7 +481,7 @@ function loadYouTubeFeed() {
     
     // Simulated YouTube videos
     const videos = [
-        { id: 'dQw4w9WgXcQ', title: 'Sunday Service Highlights' },
+        { id: 'images/image1.png', title: 'Sunday Service Highlights' },
         { id: '9bZkp7q19f0', title: 'Worship Night Recording' },
         { id: '7NOSDKb0HlU', title: 'Bible Study Session' },
         { id: 'JGwWNGJdvx8', title: 'Youth Ministry Update' }
