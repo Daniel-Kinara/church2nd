@@ -572,7 +572,7 @@ function updateAdminStats() {
 // ===== UTILITY FUNCTIONS =====
 function formatDate(dateString) {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
+    return date.toLocaleDateString('Ken', { 
         year: 'numeric', 
         month: 'short', 
         day: 'numeric' 
@@ -580,8 +580,8 @@ function formatDate(dateString) {
 }
 
 function formatCurrency(amount) {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('Ken', {
         style: 'currency',
-        currency: 'USD'
+        currency: 'Ksh'
     }).format(amount);
 }
