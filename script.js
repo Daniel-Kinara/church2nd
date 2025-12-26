@@ -9,7 +9,7 @@ const themeToggle = document.getElementById('themeToggle');
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const navMenu = document.getElementById('navMenu');
 
-// ===== EVENT DATA =====
+// ===== SAMPLE DATA =====
 const sampleEvents = [
     {
         id: 1,
@@ -25,7 +25,7 @@ const sampleEvents = [
     {
         id: 2,
         title: "Youth Group Meeting",
-        date: "2024-06-05",
+        date: "2025-06-05",
         time: "19:00",
         type: "meeting",
         location: "Youth Center",
@@ -36,7 +36,7 @@ const sampleEvents = [
     {
         id: 3,
         title: "Community Outreach Day",
-        date: "2024-06-08",
+        date: "2025-06-08",
         time: "10:00",
         type: "outreach",
         location: "City Park",
@@ -47,7 +47,7 @@ const sampleEvents = [
     {
         id: 4,
         title: "Marriage Conference",
-        date: "2024-06-15",
+        date: "2025-06-15",
         time: "09:00",
         type: "conference",
         location: "Main Auditorium",
@@ -61,7 +61,7 @@ const sampleMedia = [
     {
         id: 1,
         title: "The Power of Grace",
-        type: "youtube",
+        type: "sunday",
         url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
         description: "Sunday sermon on understanding God's grace in our lives.",
         speaker: "Reverend Samuel Kirochi",
@@ -71,17 +71,17 @@ const sampleMedia = [
     {
         id: 2,
         title: "Finding Hope in Difficult Times",
-        type: "youtube",
+        type: "sunday",
         url: "https://www.youtube.com/embed/9bZkp7q19f0",
         description: "Biblical teaching on maintaining hope during challenging seasons.",
         speaker: "Reverend Samuel Kirochi",
-        date: "2024-12-20",
+        date: "2025-12-20",
         thumbnail: "images/image1.png"
     },
     {
         id: 3,
         title: "The Book of Romans Study",
-        type: "teaching",
+        type: "bible-study",
         url: "https://www.youtube.com/embed/7NOSDKb0HlU",
         description: "Deep dive into the Book of Romans - Part 1",
         speaker: "Apostle Samson",
@@ -357,7 +357,7 @@ function renderMediaGrid(filteredMedia = media) {
     container.innerHTML = filteredMedia.map(item => `
         <div class="sermon-card">
             <div class="sermon-thumbnail">
-                <img src="${item.thumbnail}" alt="${item.title}" onerror="this.src='https://images.unsplash.com/photo-1518834103329-0d6c95f1e6b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                <img src="${item.thumbnail || 'https://images.unsplash.com/photo-1518834103329-0d6c95f1e6b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}" alt="${item.title}">
                 <div class="play-btn" data-video="${item.url}">
                     <i class="fas fa-play"></i>
                 </div>
@@ -386,8 +386,8 @@ function renderMediaGrid(filteredMedia = media) {
 }
 
 function filterMedia() {
-    const category = document.getElementById('categoryFilter').value;
-    const speaker = document.getElementById('speakerFilter').value;
+    const category = document.getElementById('categoryFilter')?.value || 'all';
+    const speaker = document.getElementById('speakerFilter')?.value || 'all';
     
     let filtered = [...media];
     
@@ -400,7 +400,7 @@ function filterMedia() {
         const speakerMapping = {
             'samson': 'Apostle Samson',
             'sammy': 'Reverend Sammy',
-            'guest': 'Guest'  // Will match "Guest Speaker", "Guest Pastor", etc.
+            'guest': 'Guest'
         };
         
         // Get the speaker name to search for
@@ -424,7 +424,7 @@ function filterMedia() {
 }
 
 function searchMedia(query) {
-    if (!query.trim()) {
+    if (!query || !query.trim()) {
         renderMediaGrid();
         return;
     }
@@ -481,21 +481,21 @@ function loadYouTubeFeed() {
     
     // Simulated YouTube videos
     const videos = [
-        { id: 'images/image1.png', title: 'Sunday Service Highlights' },
+        { id: 'dQw4w9WgXcQ', title: 'Sunday Service Highlights' },
         { id: '9bZkp7q19f0', title: 'Worship Night Recording' },
         { id: '7NOSDKb0HlU', title: 'Bible Study Session' },
         { id: 'JGwWNGJdvx8', title: 'Youth Ministry Update' }
     ];
     
     videoGrid.innerHTML = videos.map(video => `
-        <div class="video-item">
+        <div class="video-item" style="position: relative;">
             <img src="https://img.youtube.com/vi/${video.id}/mqdefault.jpg" alt="${video.title}">
             <div class="video-overlay">
                 <button class="play-btn-small" data-video="https://www.youtube.com/embed/${video.id}">
                     <i class="fas fa-play"></i>
                 </button>
             </div>
-            <p>${video.title}</p>
+            <p style="padding: 1rem;">${video.title}</p>
         </div>
     `).join('');
     
@@ -523,7 +523,7 @@ function loadInstagramFeed() {
     instagramGrid.innerHTML = posts.map(post => `
         <div class="instagram-item">
             <img src="${post.image}" alt="${post.caption}">
-            <p>${post.caption}</p>
+            <p style="padding: 1rem;">${post.caption}</p>
         </div>
     `).join('');
 }
@@ -680,7 +680,7 @@ function initEventFilters() {
 }
 
 function searchEvents(query) {
-    if (!query.trim()) {
+    if (!query || !query.trim()) {
         const activeTab = document.querySelector('.filter-tab.active');
         const filter = activeTab ? activeTab.dataset.filter : 'upcoming';
         renderEventsGrid(filter);
@@ -784,6 +784,7 @@ function initCalendar() {
             
             if (hasEvent) {
                 dateEl.classList.add('has-event');
+                dateEl.title = 'Has events';
             }
             
             calendarEl.appendChild(dateEl);
@@ -830,6 +831,7 @@ function initGivingPage() {
     const paymentMethods = document.querySelectorAll('input[name="paymentMethod"]');
     const successModal = document.getElementById('successModal');
     const closeSuccessModal = document.getElementById('closeSuccessModal');
+    const giveButtons = document.querySelectorAll('.give-btn');
     
     if (!givingForm) return;
     
@@ -847,17 +849,33 @@ function initGivingPage() {
         amountButtons.forEach(btn => btn.classList.remove('active'));
     });
     
+    // Give buttons from option cards
+    giveButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const type = this.dataset.type;
+            const givingType = document.getElementById('givingType');
+            if (givingType) {
+                givingType.value = type;
+            }
+        });
+    });
+    
     // Payment method toggle
     paymentMethods.forEach(method => {
         method.addEventListener('change', function() {
             const cardDetails = document.getElementById('cardDetails');
-            if (this.value === 'card') {
-                cardDetails.style.display = 'block';
-            } else {
-                cardDetails.style.display = 'none';
+            if (cardDetails) {
+                cardDetails.style.display = this.value === 'card' ? 'block' : 'none';
             }
         });
     });
+    
+    // Initialize card details visibility
+    const cardDetails = document.getElementById('cardDetails');
+    const defaultPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+    if (cardDetails && defaultPaymentMethod) {
+        cardDetails.style.display = defaultPaymentMethod.value === 'card' ? 'block' : 'none';
+    }
     
     // Form submission
     givingForm.addEventListener('submit', function(e) {
@@ -893,7 +911,9 @@ function initGivingPage() {
         // Reset form
         this.reset();
         amountButtons.forEach(btn => btn.classList.remove('active'));
-        document.getElementById('cardDetails').style.display = 'block';
+        if (cardDetails) {
+            cardDetails.style.display = 'block';
+        }
     });
     
     // Close success modal
@@ -915,9 +935,10 @@ function initGivingPage() {
 }
 
 function validateGivingForm() {
-    const amount = parseFloat(document.getElementById('customAmount').value);
-    const name = document.getElementById('donorName').value.trim();
-    const email = document.getElementById('donorEmail').value.trim();
+    const amountInput = document.getElementById('customAmount');
+    const amount = parseFloat(amountInput?.value || 0);
+    const name = document.getElementById('donorName')?.value.trim() || '';
+    const email = document.getElementById('donorEmail')?.value.trim() || '';
     
     if (!amount || amount <= 0) {
         alert('Please enter a valid donation amount.');
@@ -953,15 +974,19 @@ function updateGivingStats() {
     const donations = JSON.parse(localStorage.getItem('churchDonations')) || [];
     
     // Calculate totals
-    const total = donations.reduce((sum, donation) => sum + donation.amount, 0);
+    const total = donations.reduce((sum, donation) => sum + (donation.amount || 0), 0);
+    const now = new Date();
     const thisMonth = donations
         .filter(d => {
-            const donationDate = new Date(d.timestamp);
-            const now = new Date();
-            return donationDate.getMonth() === now.getMonth() &&
-                   donationDate.getFullYear() === now.getFullYear();
+            try {
+                const donationDate = new Date(d.timestamp);
+                return donationDate.getMonth() === now.getMonth() &&
+                       donationDate.getFullYear() === now.getFullYear();
+            } catch (e) {
+                return false;
+            }
         })
-        .reduce((sum, donation) => sum + donation.amount, 0);
+        .reduce((sum, donation) => sum + (donation.amount || 0), 0);
     
     const average = donations.length > 0 ? total / donations.length : 0;
     
@@ -970,9 +995,9 @@ function updateGivingStats() {
     const monthlyEl = document.getElementById('monthlyDonations');
     const averageEl = document.getElementById('averageDonation');
     
-    if (totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
-    if (monthlyEl) monthlyEl.textContent = `$${thisMonth.toFixed(2)}`;
-    if (averageEl) averageEl.textContent = `$${average.toFixed(2)}`;
+    if (totalEl) totalEl.textContent = `Ksh${total.toFixed(2)}`;
+    if (monthlyEl) monthlyEl.textContent = `Ksh${thisMonth.toFixed(2)}`;
+    if (averageEl) averageEl.textContent = `Ksh${average.toFixed(2)}`;
 }
 
 function initVerseSlider() {
@@ -1055,10 +1080,10 @@ function initContactPage() {
 }
 
 function validateContactForm() {
-    const name = document.getElementById('contactName').value.trim();
-    const email = document.getElementById('contactEmail').value.trim();
-    const subject = document.getElementById('contactSubject').value;
-    const message = document.getElementById('contactMessage').value.trim();
+    const name = document.getElementById('contactName')?.value.trim() || '';
+    const email = document.getElementById('contactEmail')?.value.trim() || '';
+    const subject = document.getElementById('contactSubject')?.value || '';
+    const message = document.getElementById('contactMessage')?.value.trim() || '';
     
     if (!name) {
         alert('Please enter your name.');
@@ -1084,9 +1109,13 @@ function validateContactForm() {
 }
 
 function saveContactMessage(message) {
-    const messages = JSON.parse(localStorage.getItem('contactMessages')) || [];
-    messages.push(message);
-    localStorage.setItem('contactMessages', JSON.stringify(messages));
+    try {
+        const messages = JSON.parse(localStorage.getItem('contactMessages')) || [];
+        messages.push(message);
+        localStorage.setItem('contactMessages', JSON.stringify(messages));
+    } catch (e) {
+        console.error('Error saving contact message:', e);
+    }
 }
 
 // ===== MODAL FUNCTIONS =====
@@ -1101,7 +1130,7 @@ function initVideoModal() {
         videoModal.style.display = 'none';
         const videoPlayer = document.getElementById('videoPlayer');
         if (videoPlayer) {
-            videoPlayer.src = videoPlayer.src; // Reset video
+            videoPlayer.src = '';
         }
     });
     
@@ -1111,7 +1140,7 @@ function initVideoModal() {
             videoModal.style.display = 'none';
             const videoPlayer = document.getElementById('videoPlayer');
             if (videoPlayer) {
-                videoPlayer.src = videoPlayer.src; // Reset video
+                videoPlayer.src = '';
             }
         }
     });
@@ -1122,7 +1151,7 @@ function initVideoModal() {
             videoModal.style.display = 'none';
             const videoPlayer = document.getElementById('videoPlayer');
             if (videoPlayer) {
-                videoPlayer.src = videoPlayer.src; // Reset video
+                videoPlayer.src = '';
             }
         }
     });
@@ -1140,7 +1169,7 @@ function openVideoModal(videoUrl) {
 
 function initEventModal() {
     const eventModal = document.getElementById('eventModal');
-    const closeModal = document.querySelector('.close-modal');
+    const closeModal = eventModal?.querySelector('.close-modal');
     
     if (!eventModal || !closeModal) return;
     
@@ -1208,25 +1237,22 @@ function showEventModal(event) {
 
 // ===== UTILITY FUNCTIONS =====
 function formatDate(dateString) {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
-    });
+    try {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        });
+    } catch (e) {
+        return dateString;
+    }
 }
 
 function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
-}
-
-function formatCurrency(amount) {
-    return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD'
-    }).format(amount);
 }
 
 // ===== EXPORT FUNCTIONS FOR GLOBAL USE =====
