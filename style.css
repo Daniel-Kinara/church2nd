@@ -231,7 +231,6 @@ body.sidebar-expanded .navbar {
         left: 0;
         width: 100%;
     }
-    @media (max-width: 768px) {
     .theme-toggle {
         /* Keep it top-right on mobile too */
         top: 15px;
