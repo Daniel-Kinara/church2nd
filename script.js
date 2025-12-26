@@ -622,17 +622,19 @@ function renderEventsGrid(filter = 'upcoming') {
         </div>
     `).join('');
     
-    // Initialize countdowns
-    filteredEvents.forEach(event => {
-        if (new Date(event.date) >= now) {
-            initializeCountdown(event.id, event.date);
-        } else {
-            const countdownEl = document.getElementById(`event-countdown-${event.id}`);
-            if (countdownEl) {
-                countdownEl.innerHTML = '<p>Event has passed</p>';
+    // FIX: Initialize countdowns AFTER DOM is updated
+    setTimeout(() => {
+        filteredEvents.forEach(event => {
+            if (new Date(event.date) >= now) {
+                initializeCountdown(`event-countdown-${event.id}`, event.date);
+            } else {
+                const countdownEl = document.getElementById(`event-countdown-${event.id}`);
+                if (countdownEl) {
+                    countdownEl.innerHTML = '<p>Event has passed</p>';
+                }
             }
-        }
-    });
+        });
+    }, 100); // Small delay to ensure DOM is updated
     
     // Add event listeners
     document.querySelectorAll('.view-event-btn').forEach(btn => {
@@ -645,7 +647,6 @@ function renderEventsGrid(filter = 'upcoming') {
         });
     });
 }
-
 function initEventFilters() {
     const filterTabs = document.querySelectorAll('.filter-tab');
     const eventSearch = document.getElementById('eventSearch');
