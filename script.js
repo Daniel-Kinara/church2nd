@@ -227,10 +227,12 @@ function initEventsPreview() {
         </div>
     `).join('');
     
-    // Initialize countdowns
-    featuredEvents.forEach(event => {
-        initializeCountdown(event.id, event.date);
-    });
+    // FIX: Initialize countdowns with delay
+    setTimeout(() => {
+        featuredEvents.forEach(event => {
+            initializeCountdown(`countdown-${event.id}`, event.date);
+        });
+    }, 100);
     
     // Add event listeners
     document.querySelectorAll('.view-event-btn').forEach(btn => {
@@ -266,9 +268,12 @@ function createCountdownHTML(dateString) {
     `;
 }
 
-function initializeCountdown(eventId, dateString) {
-    const countdownElement = document.getElementById(`countdown-${eventId}`);
-    if (!countdownElement) return;
+function initializeCountdown(countdownId, dateString) {
+    const countdownElement = document.getElementById(countdownId);
+    if (!countdownElement) {
+        console.error(`Countdown element not found: ${countdownId}`);
+        return;
+    }
     
     function updateCountdown() {
         const eventDate = new Date(dateString + 'T00:00:00');
@@ -277,6 +282,7 @@ function initializeCountdown(eventId, dateString) {
         
         if (diff < 0) {
             countdownElement.innerHTML = '<p>Event has passed</p>';
+            clearInterval(intervalId);
             return;
         }
         
@@ -296,10 +302,15 @@ function initializeCountdown(eventId, dateString) {
         if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0');
     }
     
+    // Store interval ID to clear later
+    const intervalId = setInterval(updateCountdown, 1000);
+    
+    // Initial update
     updateCountdown();
-    setInterval(updateCountdown, 1000);
+    
+    // Store interval ID on element for cleanup if needed
+    countdownElement.dataset.intervalId = intervalId;
 }
-
 // ===== SERMONS PAGE FUNCTIONS =====
 function initSermonsPage() {
     renderMediaGrid();
@@ -681,7 +692,7 @@ function initEventFilters() {
 }
 
 function searchEvents(query) {
-    if (!query || !query.trim()) {
+    if (!query.trim()) {
         const activeTab = document.querySelector('.filter-tab.active');
         const filter = activeTab ? activeTab.dataset.filter : 'upcoming';
         renderEventsGrid(filter);
@@ -712,10 +723,28 @@ function searchEvents(query) {
                 <h3>${event.title}</h3>
                 <p><i class="fas fa-clock"></i> ${event.time} • <i class="fas fa-map-marker-alt"></i> ${event.location}</p>
                 <p>${event.description.substring(0, 100)}...</p>
+                <div class="countdown" id="event-countdown-${event.id}">
+                    ${createCountdownHTML(event.date)}
+                </div>
                 <button class="btn-small view-event-btn" data-id="${event.id}">View Details</button>
             </div>
         </div>
     `).join('');
+    
+    // FIX: Initialize countdowns for search results
+    const now = new Date();
+    setTimeout(() => {
+        filteredEvents.forEach(event => {
+            if (new Date(event.date) >= now) {
+                initializeCountdown(`event-countdown-${event.id}`, event.date);
+            } else {
+                const countdownEl = document.getElementById(`event-countdown-${event.id}`);
+                if (countdownEl) {
+                    countdownEl.innerHTML = '<p>Event has passed</p>';
+                }
+            }
+        });
+    }, 100);
     
     // Add event listeners
     document.querySelectorAll('.view-event-btn').forEach(btn => {
