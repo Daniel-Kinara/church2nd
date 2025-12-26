@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pure Word Apostolic Church(PWA) - Home</title>
+    <title>Pure Word Apostolic Church - Home</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="light-mode">
@@ -15,17 +14,122 @@
         <i class="fas fa-sun"></i>
     </button>
 
+    <!-- Sidebar -->
+    <aside class="sidebar collapsed" id="sidebar">
+        <button class="sidebar-toggle" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <nav class="sidebar-nav">
+            <a href="index.html" class="sidebar-link active">
+                <div class="sidebar-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <span class="sidebar-text">Home</span>
+            </a>
+            
+            <a href="faith.html" class="sidebar-link">
+                <div class="sidebar-icon">
+                    <i class="fas fa-cross"></i>
+                </div>
+                <span class="sidebar-text">Statement of Faith</span>
+            </a>
+            
+            <a href="about.html" class="sidebar-link">
+                <div class="sidebar-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <span class="sidebar-text">About Us</span>
+            </a>
+            
+            <a href="sermons.html" class="sidebar-link">
+                <div class="sidebar-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <span class="sidebar-text">Sermons</span>
+            </a>
+            
+            <a href="events.html" class="sidebar-link">
+                <div class="sidebar-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <span class="sidebar-text">Events</span>
+            </a>
+            
+            <a href="giving.html" class="sidebar-link">
+                <div class="sidebar-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <span class="sidebar-text">Giving</span>
+            </a>
+            
+            <a href="contact.html" class="sidebar-link">
+                <div class="sidebar-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <span class="sidebar-text">Contact</span>
+            </a>
+            
+            <div class="sidebar-divider"></div>
+            
+            <a href="admin.html" class="sidebar-link admin-sidebar-link">
+                <div class="sidebar-icon">
+                    <i class="fas fa-cog"></i>
+                </div>
+                <span class="sidebar-text">Admin Panel</span>
+            </a>
+            
+            <a href="https://facebook.com" target="_blank" class="sidebar-link">
+                <div class="sidebar-icon">
+                    <i class="fab fa-facebook"></i>
+                </div>
+                <span class="sidebar-text">Facebook</span>
+            </a>
+            
+            <a href="https://youtube.com" target="_blank" class="sidebar-link">
+                <div class="sidebar-icon">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <span class="sidebar-text">YouTube</span>
+            </a>
+            
+            <a href="https://instagram.com" target="_blank" class="sidebar-link">
+                <div class="sidebar-icon">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <span class="sidebar-text">Instagram</span>
+            </a>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <div class="sidebar-user">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <div class="user-name">Visitor</div>
+                    <div class="user-role">Church Member</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <!-- Add mobile sidebar toggle button -->
+            <button class="mobile-sidebar-toggle" id="mobileSidebarToggle">
+                <i class="fas fa-th-large"></i>
+            </button>
+            
             <div class="logo">
                 <i class="fas fa-church"></i>
                 <span>Pure Word Apostolic Church</span>
             </div>
-            
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
             
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>

@@ -42,6 +42,220 @@ body {
     line-height: 1.6;
     transition: var(--transition);
 }
+/* ===== SIDEBAR ===== */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 70px;
+    background: var(--primary);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    transition: var(--transition);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar.collapsed {
+    width: 70px;
+}
+
+.sidebar.expanded {
+    width: 220px;
+}
+
+.sidebar-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    padding: 0.5rem;
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+.sidebar-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-nav {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    transition: var(--transition);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.sidebar-link:hover,
+.sidebar-link.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.sidebar-icon {
+    font-size: 1.25rem;
+    min-width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-text {
+    margin-left: 1rem;
+    font-size: 0.9rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: var(--transition);
+}
+
+.sidebar.expanded .sidebar-text {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.sidebar-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 1rem 0;
+    width: 80%;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    width: 80%;
+}
+
+.sidebar-user {
+    display: flex;
+    align-items: center;
+    color: white;
+    padding: 0.5rem;
+    border-radius: var(--radius);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.sidebar-user:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.user-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.user-info {
+    margin-left: 1rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: var(--transition);
+}
+
+.sidebar.expanded .user-info {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.user-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.user-role {
+    font-size: 0.7rem;
+    opacity: 0.8;
+}
+
+/* Adjust main content for sidebar */
+body {
+    padding-left: 70px;
+    transition: var(--transition);
+}
+
+body.sidebar-expanded {
+    padding-left: 220px;
+}
+
+/* Adjust navbar for sidebar */
+.navbar {
+    left: 70px;
+    width: calc(100% - 70px);
+    transition: var(--transition);
+}
+
+body.sidebar-expanded .navbar {
+    left: 220px;
+    width: calc(100% - 220px);
+}
+
+/* Adjust theme toggle position */
+.theme-toggle {
+    left: 90px;
+    transition: var(--transition);
+}
+
+body.sidebar-expanded .theme-toggle {
+    left: 240px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        width: 250px;
+    }
+    
+    .sidebar.mobile-open {
+        transform: translateX(0);
+    }
+    
+    body {
+        padding-left: 0;
+    }
+    
+    .navbar {
+        left: 0;
+        width: 100%;
+    }
+    
+    .theme-toggle {
+        left: 20px;
+    }
+    
+    .mobile-sidebar-toggle {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--text);
+        cursor: pointer;
+        margin-right: 1rem;
+    }
+}
 
 .container {
     max-width: 1200px;
@@ -1449,5 +1663,37 @@ footer {
     
     .form-row {
         grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 768px) {
+    .mobile-sidebar-toggle {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--text);
+        cursor: pointer;
+        margin-right: 1rem;
+    }
+    
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--card-bg);
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: var(--shadow);
+    }
+    
+    .nav-menu.active {
+        display: flex;
+    }
+    
+    /* Adjust logo for mobile */
+    .logo span {
+        font-size: 1rem;
     }
 }

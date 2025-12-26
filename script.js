@@ -1284,6 +1284,103 @@ function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
 }
+// ===== SIDEBAR FUNCTIONS =====
+function initSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const mobileSidebarToggle = document.getElementById('mobileSidebarToggle');
+    
+    if (!sidebar) return;
+    
+    // Load sidebar state
+    const sidebarState = localStorage.getItem('sidebarState');
+    if (sidebarState === 'expanded') {
+        expandSidebar();
+    }
+    
+    // Desktop toggle
+    if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', toggleSidebar);
+    }
+    
+    // Mobile toggle
+    if (mobileSidebarToggle) {
+        mobileSidebarToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('mobile-open');
+        });
+    }
+    
+    // Close mobile sidebar when clicking outside
+    document.addEventListener('click', function(event) {
+        if (sidebar.classList.contains('mobile-open') && 
+            !sidebar.contains(event.target) && 
+            !mobileSidebarToggle.contains(event.target)) {
+            sidebar.classList.remove('mobile-open');
+        }
+    });
+    
+    // Set active link based on current page
+    setActiveSidebarLink();
+}
+
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    if (!sidebar) return;
+    
+    if (sidebar.classList.contains('expanded')) {
+        collapseSidebar();
+    } else {
+        expandSidebar();
+    }
+}
+
+function expandSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const body = document.body;
+    
+    if (sidebar && body) {
+        sidebar.classList.remove('collapsed');
+        sidebar.classList.add('expanded');
+        body.classList.add('sidebar-expanded');
+        localStorage.setItem('sidebarState', 'expanded');
+    }
+}
+
+function collapseSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const body = document.body;
+    
+    if (sidebar && body) {
+        sidebar.classList.remove('expanded');
+        sidebar.classList.add('collapsed');
+        body.classList.remove('sidebar-expanded');
+        localStorage.setItem('sidebarState', 'collapsed');
+    }
+}
+
+function setActiveSidebarLink() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const sidebarLinks = document.querySelectorAll('.sidebar-link');
+    
+    sidebarLinks.forEach(link => {
+        const linkHref = link.getAttribute('href');
+        if (linkHref === currentPage) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
+
+// Update initialization function
+document.addEventListener('DOMContentLoaded', function() {
+    initTheme();
+    initNavigation();
+    initSidebar(); // Add this line
+    loadData();
+    
+    // ... rest of the initialization
+});
 
 // ===== EXPORT FUNCTIONS FOR GLOBAL USE =====
 window.toggleTheme = toggleTheme;

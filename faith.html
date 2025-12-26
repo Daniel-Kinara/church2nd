@@ -13,16 +13,120 @@
         <i class="fas fa-sun"></i>
     </button>
 
+    <!-- Sidebar (Same as index.html) -->
+    <aside class="sidebar collapsed" id="sidebar">
+        <button class="sidebar-toggle" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <nav class="sidebar-nav">
+            <a href="index.html" class="sidebar-link">
+                <div class="sidebar-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <span class="sidebar-text">Home</span>
+            </a>
+            
+            <a href="faith.html" class="sidebar-link active">
+                <div class="sidebar-icon">
+                    <i class="fas fa-cross"></i>
+                </div>
+                <span class="sidebar-text">Statement of Faith</span>
+            </a>
+            
+            <a href="about.html" class="sidebar-link">
+                <div class="sidebar-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <span class="sidebar-text">About Us</span>
+            </a>
+            
+            <a href="sermons.html" class="sidebar-link">
+                <div class="sidebar-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <span class="sidebar-text">Sermons</span>
+            </a>
+            
+            <a href="events.html" class="sidebar-link">
+                <div class="sidebar-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <span class="sidebar-text">Events</span>
+            </a>
+            
+            <a href="giving.html" class="sidebar-link">
+                <div class="sidebar-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <span class="sidebar-text">Giving</span>
+            </a>
+            
+            <a href="contact.html" class="sidebar-link">
+                <div class="sidebar-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <span class="sidebar-text">Contact</span>
+            </a>
+            
+            <div class="sidebar-divider"></div>
+            
+            <a href="admin.html" class="sidebar-link admin-sidebar-link">
+                <div class="sidebar-icon">
+                    <i class="fas fa-cog"></i>
+                </div>
+                <span class="sidebar-text">Admin Panel</span>
+            </a>
+            
+            <a href="https://facebook.com" target="_blank" class="sidebar-link">
+                <div class="sidebar-icon">
+                    <i class="fab fa-facebook"></i>
+                </div>
+                <span class="sidebar-text">Facebook</span>
+            </a>
+            
+            <a href="https://youtube.com" target="_blank" class="sidebar-link">
+                <div class="sidebar-icon">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <span class="sidebar-text">YouTube</span>
+            </a>
+            
+            <a href="https://instagram.com" target="_blank" class="sidebar-link">
+                <div class="sidebar-icon">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <span class="sidebar-text">Instagram</span>
+            </a>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <div class="sidebar-user">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <div class="user-name">Visitor</div>
+                    <div class="user-role">Church Member</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
     <nav class="navbar">
         <div class="nav-container">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <button class="mobile-sidebar-toggle" id="mobileSidebarToggle">
+                <i class="fas fa-th-large"></i>
+            </button>
+            
             <div class="logo">
                 <i class="fas fa-church"></i>
                 <span>Pure Word Apostolic Church</span>
             </div>
-            
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
             
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
@@ -129,7 +233,42 @@
 
     <!-- Footer (Same as index.html) -->
     <footer>
-        <!-- Same footer as index.html -->
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3><i class="fas fa-church"></i> Pure Word Apostolic Church</h3>
+                <p>Ogembo 40200-200 Kisii ,Kisii-Kilgoris Highway</p>
+                <p><i class="fas fa-phone"></i> +254-710-777-333</p>
+                <p><i class="fas fa-envelope"></i> info@purewordapostolic.org</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="sermons.html">Sermons</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="giving.html">Online Giving</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+                <p class="newsletter-text">Subscribe to our newsletter</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Your email">
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Pure Word Apostolic Church. All rights reserved.</p>
+            <p>Built with <i class="fas fa-heart"></i> for the glory of God</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>
