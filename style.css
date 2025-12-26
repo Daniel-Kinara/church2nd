@@ -317,9 +317,8 @@ body.dark-mode .theme-toggle .fa-sun {
 .navbar {
     background-color: var(--white);
     box-shadow: var(--shadow);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    position: relative;
+    z-index: 10;
     transition: var(--transition);
 }
 
