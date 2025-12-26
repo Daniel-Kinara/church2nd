@@ -212,16 +212,6 @@ body.sidebar-expanded .navbar {
     width: calc(100% - 220px);
 }
 
-/* Adjust theme toggle position */
-.theme-toggle {
-    left: 90px;
-    transition: var(--transition);
-}
-
-body.sidebar-expanded .theme-toggle {
-    left: 240px;
-}
-
 /* Mobile adjustments */
 @media (max-width: 768px) {
     .sidebar {
@@ -241,9 +231,12 @@ body.sidebar-expanded .theme-toggle {
         left: 0;
         width: 100%;
     }
-    
+    @media (max-width: 768px) {
     .theme-toggle {
-        left: 20px;
+        /* Keep it top-right on mobile too */
+        top: 15px;
+        right: 15px;
+        left: auto; /* Ensure it stays on right */
     }
     
     .mobile-sidebar-toggle {
@@ -280,8 +273,9 @@ h3 { font-size: 1.5rem; }
 /* ===== THEME TOGGLE ===== */
 .theme-toggle {
     position: fixed;
-    top: 1rem;
-    right: 1rem;
+    top: 20px; /* Changed from 1rem to 20px */
+    right: 20px; /* Changed from 1rem to 20px */
+    left: auto; /* Add this to override any left positioning */
     background: var(--primary);
     color: white;
     border: none;
@@ -289,7 +283,7 @@ h3 { font-size: 1.5rem; }
     height: 50px;
     border-radius: 50%;
     cursor: pointer;
-    z-index: 1000;
+    z-index: 1000; /* Keep this high */
     display: flex;
     align-items: center;
     justify-content: center;
